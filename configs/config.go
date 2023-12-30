@@ -31,7 +31,7 @@ func Load() error {
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 	viper.AddConfigPath(".")
-	err := viper.ReadConfig()
+	err := viper.ReadInConfig()
 	if err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
 			return err
@@ -53,4 +53,12 @@ func Load() error {
 	}
 
 	return nil
+}
+
+func GedDB() DBConfig {
+	return cfg.DB
+}
+
+func GerServerPort() string {
+	return cfg.API.Port
 }
